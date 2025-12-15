@@ -23,8 +23,12 @@ public class PlayerController : MonoBehaviour
 
     public void Move(float horizontal, float vertical)
     {
-
         Debug.Log("Player Moving :" + horizontal);
         Debug.Log("Vertical : " + vertical);
+    }
+
+    public void Jump()
+    {
+        Debug.Log("Jump");
     }
 }

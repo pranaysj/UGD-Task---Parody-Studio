@@ -6,10 +6,12 @@ using UnityEditor;
 public class InputReader : MonoBehaviour
 {
     private MoveCommand moveCommand;
+    private JumpCommand jumpCommand;
 
     private void Start()
     {
         moveCommand = new MoveCommand(PlayerController.Instance);
+        jumpCommand = new JumpCommand(PlayerController.Instance);
     }
 
     private void FixedUpdate()
@@ -21,6 +23,11 @@ public class InputReader : MonoBehaviour
         {
             moveCommand.SetInput(horizontal, vertical); 
             moveCommand.Execute();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpCommand.Execute();
         }
     }
 }
