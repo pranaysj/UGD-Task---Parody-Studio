@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance
     {
-        set;
-        private get;
+        private set;
+        get;
     }
 
     private IGameState currentState; 
