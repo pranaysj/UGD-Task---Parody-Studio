@@ -12,10 +12,14 @@ public class InputReader : MonoBehaviour
         moveCommand = new MoveCommand(PlayerController.Instance);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        if(horizontal != 0 || vertical != 0)
         {
+            moveCommand.SetInput(horizontal, vertical); 
             moveCommand.Execute();
         }
     }

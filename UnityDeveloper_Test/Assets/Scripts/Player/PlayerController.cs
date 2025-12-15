@@ -21,8 +21,10 @@ public class PlayerController : MonoBehaviour
         Instance = this;
     }
 
-    public void Move()
+    public void Move(float horizontal, float vertical)
     {
-        Debug.Log("Player Moving");
+
+        Debug.Log("Player Moving :" + horizontal);
+        Debug.Log("Vertical : " + vertical);
     }
 }
