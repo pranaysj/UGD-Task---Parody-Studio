@@ -92,7 +92,6 @@ public class InputReader : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        Debug.Log("Cancel");
 
         // Time expired → cancel
         CleanupGravityState();
