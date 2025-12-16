@@ -57,10 +57,9 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyGravity()
     {
-        Vector3 gravityDir = GravityController.Instance.GravityDirection;
         float gravity = GravityController.Instance.GravityStrength;
+        Vector3 gravityDir = GravityController.Instance.GravityDirection;
 
-        
 
         if (controller.isGrounded && Vector3.Dot(velocity, gravityDir) > 0)
         {
