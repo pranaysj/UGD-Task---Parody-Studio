@@ -4467,6 +4467,7 @@ GameObject:
   - component: {fileID: 1209543243}
   - component: {fileID: 1209543242}
   - component: {fileID: 1209543241}
+  - component: {fileID: 1209543244}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4486,6 +4487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27ffdbdf6c30f144953033688aab798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpForce: 7
 --- !u!143 &1209543242
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4528,6 +4531,19 @@ Transform:
   - {fileID: 1784185283}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1209543244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209543240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374abad8ce3737e4c8f47004a2c82467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityStrength: 20
 --- !u!1 &1218137102
 GameObject:
   m_ObjectHideFlags: 0
@@ -7608,7 +7624,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450653259175915}
-  - component: {fileID: 919132149603880274}
   m_Layer: 0
   m_Name: Exo Gray
   m_TagString: Untagged
@@ -7616,18 +7631,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &919132149603880274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149603880273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d27ffdbdf6c30f144953033688aab798, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &927016744737343624
 GameObject:
   m_ObjectHideFlags: 0

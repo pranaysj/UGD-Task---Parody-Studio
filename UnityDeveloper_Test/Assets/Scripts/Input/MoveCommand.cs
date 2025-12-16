@@ -21,6 +21,8 @@ public class MoveCommand : IInputCommand
 
     public void Execute()
     {
+        Debug.Log("Check");
+
         player.Move(horizontal, vertical);
     }
 }

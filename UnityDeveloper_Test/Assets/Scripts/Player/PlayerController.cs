@@ -1,14 +1,15 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
 
-    private CharacterController characterController;
+    private CharacterController controller;
 
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private float jumpHeight = 1.5f;
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 7f;
 
     private Vector3 velocity;
 
@@ -16,7 +17,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Instance != null)
         {
-            Destroy(gameObject);
             return;
         }
         Instance = this;
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -34,27 +34,45 @@ public class PlayerController : MonoBehaviour
 
     public void Move(float horizontal, float vertical)
     {
-        Vector3 move = (transform.right * horizontal + transform.forward * vertical) * speed;
 
-        characterController.Move(move * Time.deltaTime);
+        Vector3 gravityDir = GravityController.Instance.GravityDirection;
+
+        Vector3 forward = Vector3.ProjectOnPlane(transform.forward, gravityDir).normalized;
+        if (forward.sqrMagnitude < 0.001f)
+            forward = Vector3.ProjectOnPlane(transform.right, gravityDir).normalized;
+
+        Vector3 right = Vector3.Cross(gravityDir, forward).normalized;
+
+        Vector3 move = (right * horizontal + forward * vertical) * moveSpeed;
+        controller.Move(move * Time.deltaTime);
     }
 
     public void Jump()
     {
-        if (characterController.isGrounded)
+        if (controller.isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            velocity = -GravityController.Instance.GravityDirection * jumpForce;
         }
     }
 
     private void ApplyGravity()
     {
-        if (characterController.isGrounded && velocity.y < 0)
+        Vector3 gravityDir = GravityController.Instance.GravityDirection;
+        float gravity = GravityController.Instance.GravityStrength;
+
+        
+
+        if (controller.isGrounded && Vector3.Dot(velocity, gravityDir) > 0)
         {
-            velocity.y = -2f; // keeps player grounded
+            velocity = gravityDir  *  2f; // keeps player grounded
         }
 
-        velocity.y += gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
+        velocity += gravityDir * gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    internal void ResetVelocity()
+    {
+        velocity = Vector3.zero;
     }
 }
