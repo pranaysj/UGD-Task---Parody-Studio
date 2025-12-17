@@ -44,11 +44,8 @@ public class InputReader : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        if (horizontal != 0 || vertical != 0)
-        {
-            moveCommand.SetInput(horizontal, vertical);
-            moveCommand.Execute();
-        }
+        moveCommand.SetInput(horizontal, vertical);
+        moveCommand.Execute();
     }
 
     private void HandleGravityInput()
